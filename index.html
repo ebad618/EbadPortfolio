@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Magnetto — Studio Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <style>
+    :root{
+      --bg:#0a0a0a;
+      --panel:#151515;
+      --muted:#6a6a6a;
+      --text:#111;
+      --white:#fff;
+      --soft:#f7f7f5;
+      --card:#ffffff0d;
+      --border:rgba(255,255,255,.10);
+      --shadow:0 24px 80px rgba(0,0,0,.16);
+      --radius:56px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:#fff;overflow-x:hidden}
+    body{
+  padding-bottom:0 !important;
+}
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+
+    .bottom-floating-nav{
+  position:fixed;
+  left:50%;
+  bottom:30px;
+  transform:translateX(-50%);
+  z-index:9999;
+  width:auto;
+}
+
+.fixed-nav{
+  min-width:620px;
+  background:#666;
+  border-radius:34px;
+  padding:16px 18px;
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
+}
+
+@media (max-width:768px){
+  .fixed-nav{
+    min-width:auto;
+    width:95vw;
+    justify-content:space-between;
+  }
+
+  .bottom-floating-nav{
+    bottom:16px;
+  }
+}
+
+    .page{min-height:100vh}
+    .section{position:relative;padding:24px 16px}
+    .container{max-width:1800px;margin:0 auto}
+    .glass{border:1px solid var(--border);background:rgba(255,255,255,.05);box-shadow:var(--shadow);backdrop-filter:blur(14px);border-radius:var(--radius)}
+    .pixel{font-family:'Press Start 2P',monospace;letter-spacing:-.02em}
+    .menu-btn{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;border:none;background:#000;color:#fff;cursor:pointer}
+    .menu-btn.dark{background:#fff;color:#000}
+    .icon{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2.3;stroke-linecap:round}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .logo-mark{font-size:12px;letter-spacing:.35em;text-transform:uppercase;color:rgba(0,0,0,.55)}
+    .hero{min-height:110vh;background:#f6f6f4;color:var(--text);overflow:hidden}
+    .hero-shell{position:relative;z-index:1;padding:24px 0 96px}
+    .hero-bg{position:absolute;inset:0;background:#f7f7f5;border-bottom-left-radius:70px;border-bottom-right-radius:70px}
+    .hero-grid{display:grid;grid-template-columns:1.15fr 1.35fr .85fr;gap:40px;align-items:center;margin-top:32px}
+    .hero-title{
+  font-family:'Press Start 2P', monospace;
+  font-size: clamp(2rem, 4.5vw, 4.2rem);
+  line-height: 1;
+  margin: 0;
+  color: #000;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+    .hero-sub{font-family:'Press Start 2P',monospace;font-size:13px;line-height:1.6;margin-top:24px;color:rgba(0,0,0,.75)}
+    .hero-copy{max-width:290px;font-size:clamp(16px,1.6vw,18px);line-height:1.7;color:var(--muted)}
+    .portrait-card{position:relative;width:100%;max-width:760px;aspect-ratio:.78 / 1;border-radius:56px;overflow:hidden;background:rgba(255,255,255,.8);box-shadow:0 18px 80px rgba(0,0,0,.08)}
+    .portrait-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1)}
+    .portrait-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 35%,rgba(255,255,255,.40),transparent 25%),linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.12))}
+    .portrait-card::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(140deg,rgba(255,255,255,0) 0,rgba(255,255,255,0) 28px,rgba(255,255,255,.65) 28px,rgba(255,255,255,.65) 34px);opacity:.55;mix-blend-mode:screen;filter:blur(1px)}
+    .portrait-shadow{position:absolute;bottom:0;left:50%;transform:translateX(-50%);height:64%;width:42%;border-top-left-radius:48px;border-top-right-radius:48px;background:rgba(0,0,0,.15);filter:blur(35px)}
+    .portrait-shadow2{position:absolute;bottom:0;left:11%;right:11%;height:9%;border-radius:999px;background:rgba(0,0,0,.10);filter:blur(22px)}
+    .nav-pill{display:flex;align-items:center;gap:12px;justify-content:center;border:1px solid rgba(0,0,0,.10);background:#606060;padding:8px 12px;border-radius:28px;box-shadow:0 16px 60px rgba(0,0,0,.2)}
+    .thumb{width:64px;height:64px;border-radius:18px;overflow:hidden;flex:0 0 auto}
+    .thumb img{width:100%;height:100%;object-fit:cover}
+    .thumb-stack{display:flex;flex-direction:column;gap:12px;justify-self:end}
+    .thumb-stack .mini{width:180px;height:122px;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.2)}
+    .nav-links{display:flex;align-items:center;gap:24px;padding:0 20px;text-transform:uppercase;font-size:12px;font-weight:700;letter-spacing:.18em;color:rgba(255,255,255,.88)}
+    .nav-links a.active{color:#fff}
+    .cta{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#000;padding:16px 24px;border-radius:20px;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap}
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+    .project-card{position:relative;min-height:700px;overflow:hidden;border-radius:var(--radius)}
+    .project-card.small{min-height:680px}
+    .project-card .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.62;mix-blend-mode:screen}
+    .project-card .overlay{position:absolute;inset:0;background:radial-gradient(circle at center,rgba(255,255,255,.15),transparent 45%)}
+    .project-card.red{background:linear-gradient(180deg,#7c1f1d 0%,#b52820 22%,#2b0d11 58%,#160a0d 100%)}
+    .project-card.green{background:linear-gradient(180deg,#031510 0%,#04281f 40%,#0a8b67 100%)}
+    .project-card.deep{background:linear-gradient(180deg,#1b0404 0%,#0b0000 45%,#6b1609 100%)}
+    .project-card.black{background:#000}
+    .center-box{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+@media (max-width: 640px){
+  .card-title{
+    font-size: clamp(1.3rem, 6vw, 2.2rem);
+  }
+}
+    .card-panel{
+  width: 100%;
+  max-width: 620px;
+  padding: 28px 24px;
+  border-radius: 40px;
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,.10);
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,.35);
+  overflow: hidden;
+}
+
+.card-title{
+  font-family:'Press Start 2P', monospace;
+  font-size: clamp(1rem, 2.2vw, 2.8rem);
+  line-height: 2.0;
+  margin: 22px 0 0;
+  
+  white-space: nowrap;   /* keeps text in one line */
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  width: 100%;
+}
+    .card-label{font-family:'Press Start 2P',monospace;font-size:40px;margin:0;color:rgba(255,255,255,.95)}
+  
+    .section-dark{background:#050505;color:#fff}
+    .about-card{position:relative;min-height:820px;overflow:hidden;border-radius:var(--radius);background:#ef9f2f}
+    .about-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.78;mix-blend-mode:multiply}
+    .about-card::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,170,60,.18),rgba(0,0,0,.25))}
+    .about-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px}
+    .about-panel{width:100%;max-width:1100px;border-radius:38px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.25);backdrop-filter:blur(14px);padding:32px}
+    .about-grid{display:grid;grid-template-columns:1fr .8fr;gap:32px;align-items:center}
+    .section-title{font-family:'Press Start 2P',monospace;font-size:clamp(2.4rem,5vw,4.9rem);line-height:1;margin:0}
+    .section-title.big{font-size:clamp(2.5rem,6vw,5.8rem)}
+    .copy{color:rgba(255,255,255,.8);font-size:16px;line-height:1.75}
+    .copy.light{color:rgba(255,255,255,.95)}
+    .clients-grid{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:start}
+    .client-logos{margin-top:40px;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+    .logo-box{border-radius:34px;background:rgba(255,255,255,.06);aspect-ratio:1 / 1.05;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.35);font-size:18px;font-weight:600;border:1px solid rgba(255,255,255,.05);text-align:center;padding:8px}
+    .services-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+    .service-card{min-height:520px;padding:32px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;border-radius:var(--radius);background:#151515}
+    .service-art{position:relative;margin:40px 0;height:340px;width:340px;max-width:100%}
+    .service-art .layer1{position:absolute;inset:0;border-radius:44px;background:linear-gradient(to bottom,#f7c66e,rgba(255,255,255,.8),rgba(255,255,255,0));transform:rotate(-8deg);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+    .service-art .layer2{position:absolute;inset:0;border-radius:44px;overflow:hidden;transform:rotate(6deg);border:1px solid rgba(255,255,255,.2)}
+    .service-art .layer2 img{width:100%;height:100%;object-fit:cover}
+    .chip{position:absolute;left:50%;top:calc(50% + 100px);transform:translateX(-50%);border:none;border-radius:999px;background:#fff;color:#000;padding:8px 20px;font-size:12px;font-weight:700}
+    .milestone{font-family:'Press Start 2P',monospace;font-size:clamp(3rem,7vw,6rem);line-height:1;margin:0;display:flex;align-items:end;justify-content:center;gap:8px}
+    .divider{height:1px;background:rgba(255,255,255,.25);margin:28px 0}
+    .journal-shell{border-radius:56px;background:#191919;padding:24px;overflow:hidden}
+    .journal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+    .journal-card{overflow:hidden;border-radius:40px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.05)}
+    .journal-img{position:relative;aspect-ratio:.92 / 1;overflow:hidden}
+    .journal-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+    .journal-card:hover .journal-img img{transform:scale(1.05)}
+    .journal-img::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,transparent 22%,rgba(0,0,0,.38))}
+    .journal-body{text-align:center;padding:16px 20px 18px}
+    .journal-title{font-size:18px;line-height:1.55;font-weight:600;margin:0}
+    .journal-tag{font-family:'Press Start 2P',monospace;font-size:10px;color:rgba(255,255,255,.70);margin-top:12px}
+    .contact-card{position:relative;min-height:640px;border-radius:var(--radius);overflow:hidden;background:#000}
+    .contact-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+    .contact-card::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 45%,rgba(255,95,55,.2),transparent 28%),linear-gradient(90deg,rgba(0,0,0,.65),rgba(0,0,0,.1))}
+    .contact-inner{position:relative;z-index:1;min-height:640px;display:grid;grid-template-columns:.9fr 1.1fr;gap:32px;align-items:center;padding:56px}
+    .form{border-radius:42px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.10);backdrop-filter:blur(20px);padding:20px;box-shadow:0 25px 120px rgba(0,0,0,.4)}
+    .form-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:20px}
+    .label{display:block}
+    .label span{display:block;margin-bottom:8px;font-size:14px;font-weight:600;color:rgba(255,255,255,.92)}
+    .input{width:100%;border-radius:14px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.25);padding:16px 16px;color:#fff;outline:none}
+    .input:focus{border-color:rgba(255,255,255,.35)}
+    .submit{margin-top:20px;width:100%;border:none;border-radius:999px;background:#fff;color:#000;padding:16px;font-size:14px;font-weight:800;letter-spacing:.2em;cursor:pointer}
+    .footer{padding-top:0}
+    .footer{
+  padding-bottom:0 !important;
+  margin-bottom:0 !important;
+}
+    .footer-box{
+  border-radius:56px;
+  background:#151515;
+  padding:70px 50px;
+  min-height:700px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+    .footer-grid{display:grid;grid-template-columns:1.2fr .9fr .8fr;gap:40px}
+    .footer-title{font-family:'Press Start 2P',monospace;font-size:clamp(1.8rem,4vw,3.8rem);line-height:1.1;margin:20px 0 0}
+    .footer-links{display:grid;gap:16px;font-size:24px;margin-top:6px}
+    .socials{display:flex;gap:12px;color:rgba(255,255,255,.75)}
+    .soc{height:40px;width:40px;border-radius:999px;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center}
+    .footer-brand{margin-top:56px;text-align:center;font-family:'Press Start 2P',monospace;font-size:clamp(2rem,5vw,4.8rem);color:rgba(255,255,255,.8)}
+    .copyright{text-align:center;margin-top:20px;color:rgba(255,255,255,.45);font-size:14px}
+.mobile-menu{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(8px);
+  z-index:100000;
+  display:none;
+}
+
+.mobile-menu.open{
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-end;
+}
+
+.menu-panel{
+  position:absolute;
+  right:16px;
+  top:16px;
+  width:min(92vw,360px);
+  border-radius:32px;
+  background:#121212;
+  padding:20px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+  z-index:100001;
+}    .menu-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+    .menu-title{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+    .menu-list{display:grid;gap:8px}
+    .menu-link{padding:16px;border-radius:16px;background:rgba(255,255,255,.05)}
+    .hide-mobile{display:block}
+    .lg-only{display:block}
+    .sm-only{display:none}
+    .active-dot{color:#fff}
+    .spacer{height:24px}
+    .topline{height:1px;background:transparent}
+    @media (max-width: 1200px){
+      .hero-grid,.about-grid,.clients-grid,.services-grid,.contact-inner,.footer-grid{grid-template-columns:1fr}
+      .thumb-stack,.hide-mobile,.lg-only{display:none}
+      .sm-only{display:flex}
+      .nav-pill{justify-content:space-between}
+      .grid-2,.journal-grid{grid-template-columns:1fr}
+      .project-card,.project-card.small{min-height:520px}
+      .section-title.big,.hero-title{font-size:clamp(2.6rem,10vw,5.2rem)}
+      .section-title{font-size:clamp(2rem,8vw,4rem)}
+      .footer-links{font-size:20px}
+      .contact-inner{padding:24px}
+    }
+    @media (max-width: 640px){
+      .section{padding:16px 12px}
+      .hero-shell{padding:16px 0 80px}
+      .hero-copy,.copy,.copy.light{font-size:15px}
+      .nav-pill{gap:8px;padding:8px}
+      .cta{padding:14px 16px;font-size:11px}
+      .thumb{width:52px;height:52px}
+      .card-panel{padding:24px}
+      .project-card,.project-card.small,.about-card,.contact-card,.journal-shell{border-radius:32px}
+      .about-panel,.form,.footer-box{padding:20px;border-radius:28px}
+      .service-card{padding:20px}
+      .service-art{height:280px;width:280px}
+      .client-logos{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .logo-box{font-size:16px}
+      .input{padding:14px}
+    }
+
+    .bottom-floating-nav.hide-nav{
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(40px);
+  transition: all 0.4s ease;
+}
+
+.bottom-floating-nav{
+  transition: all 0.4s ease;
+}
+.soc{
+  height:44px;
+  width:44px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.15);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:18px;
+  transition:0.3s ease;
+}
+
+.soc:hover{
+  background:#fff;
+  color:#000;
+  transform:translateY(-4px);
+}
+
+@media (max-width: 768px) {
+  html{
+    scroll-behavior:smooth;
+    scroll-padding-top:80px;
+  }
+
+  body{
+    overflow-x:hidden;
+    -webkit-overflow-scrolling:touch;
+    padding-bottom:120px;
+  }
+
+  .section{
+    padding:14px 10px;
+  }
+
+  .container{
+    padding:0 10px;
+  }
+
+  .hero{
+    min-height:auto;
+  }
+
+  .hero-shell{
+    padding:14px 0 72px;
+  }
+
+  .hero-grid{
+    grid-template-columns:1fr;
+    gap:18px;
+    margin-top:14px;
+  }
+
+  .hero-grid > div{
+    width:100%;
+    overflow:visible;
+  }
+
+  .hero-title{
+    font-size:clamp(1.8rem, 10vw, 2.8rem) !important;
+    line-height:0.95 !important;
+    letter-spacing:-0.08em;
+    white-space:normal;
+    word-break:break-word;
+    overflow-wrap:anywhere;
+    width:100%;
+    max-width:100%;
+    margin-top: 25px;
+  }
+
+  .hero-sub{
+    font-size:11px !important;
+    margin-top:10px;
+  }
+
+  .hero-copy,
+  .copy,
+  .copy.light{
+    max-width:100% !important;
+    width:100%;
+    font-size:14px !important;
+    line-height:1.7 !important;
+    overflow-wrap:anywhere;
+    word-break:break-word;
+  }
+
+  .portrait-card{
+    max-width:100%;
+    width:100%;
+    aspect-ratio:0.78 / 1;
+    border-radius:28px;
+  }
+
+  .bottom-floating-nav{
+    position:fixed;
+    top:14px;
+    left:110px;
+    bottom:auto;
+    transform:none;
+    width:100%;
+    padding:0;
+    z-index:9999;
+  }
+
+  .fixed-nav{
+    min-width:0;
+    width:50%;
+    padding:10px 12px;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .cta{
+    padding:11px 14px;
+    font-size:10px;
+  }
+
+  .about-card{
+    min-height:auto;
+  }
+
+  .about-inner{
+    padding:14px;
+  }
+
+  .about-panel{
+    width:100%;
+    max-width:100%;
+    padding:18px;
+    border-radius:24px;
+  }
+
+  .about-grid{
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+
+  .section-title.big{
+    font-size:clamp(1.9rem, 9vw, 2.8rem);
+    line-height:1;
+  }
+
+  .services-grid,
+  .grid-2,
+  .journal-grid,
+  .clients-grid,
+  .contact-inner,
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
+
+  .project-card,
+  .project-card.small{
+    min-height:420px;
+  }
+
+  .card-panel{
+    max-width:92%;
+    padding:20px 16px;
+    border-radius:28px;
+  }
+
+  .card-label{
+    font-size:10px;
+  }
+
+  .card-title{
+    font-size:clamp(1rem, 5.8vw, 1.6rem);
+    line-height:1.15;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    margin-top:16px;
+  }
+
+  .service-card{
+    min-height:auto;
+    padding:20px 16px;
+  }
+
+  .service-art{
+    width:220px;
+    height:220px;
+  }
+
+  .journal-shell{
+    padding:16px;
+    border-radius:28px;
+  }
+
+  .contact-inner{
+    padding:18px;
+    gap:18px;
+  }
+
+  .form{
+    padding:16px;
+    border-radius:22px;
+  }
+
+  .form div[style*="grid-template-columns"]{
+    grid-template-columns:1fr !important;
+  }
+
+.footer-box{
+  padding:28px 18px 14px;
+  min-height:auto;
+  border-radius:28px;
+}
+
+  .footer-title,
+  .footer-brand{
+    font-size:clamp(1.0rem, 7vw, 1.3rem);
+    line-height:1.1;
+  }
+
+  .footer-links{
+    font-size:16px;
+  }
+
+  .socials{
+    flex-wrap:wrap;
+  }
+
+  .soc{
+    width:42px;
+    height:42px;
+  }
+}
+@media (max-width:768px){
+
+  #journal .section-title{
+    font-size: clamp(1.5rem, 7vw, 2.4rem) !important;
+    line-height: 1 !important;
+    max-width: 100%;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    margin-bottom: 18px;
+  }
+
+  .journal-shell{
+    padding: 16px !important;
+  }
+
+}
+@media (max-width:768px){
+
+  .topbar{
+    position:relative;
+    z-index:100010;
+  }
+
+  .menu-btn{
+    position:relative;
+    z-index:1000;
+    margin-right:10px;
+  }
+
+.bottom-floating-nav{
+  position:absolute;
+  top:10px;
+  left:0px;
+  bottom:auto;
+  transform:none;
+  width:auto;
+  z-index:1000000;
+}
+
+  .fixed-nav{
+    width:auto;
+    min-width:auto;
+    padding:8px 10px;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .cta{
+    display:none;
+  }
+}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section id="home" class="section hero">
+      <div class="hero-bg"></div>
+      <div class="container hero-shell">
+        <div class="topbar">
+          <div class="logo-mark">EA</div>
+          <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+            <svg class="icon" id="menuIcon" viewBox="0 0 24 24"><path d="M4 6h16"></path><path d="M4 12h16"></path><path d="M4 18h16"></path></svg>
+          </button>
+        </div>
+
+        <div class="hero-grid">
+          <div>
+            <h1 class="hero-title">EBADULLAH</h1>
+            <div class="hero-sub">ASIF</div>
+          </div>
+
+          <div style="display:flex;justify-content:center;">
+            <div class="portrait-card">
+              <img src="/images/EBADPIC.png" alt="Portrait">
+              <div class="portrait-shadow"></div>
+              <div class="portrait-shadow2"></div>
+            </div>
+          </div>
+
+          <div style="padding-top:32px;color:var(--muted)">
+            <p class="hero-copy">Ebadullah Asif is a passionate web developer and creative designer focused on building modern, user-friendly digital experiences. With expertise in web development, UI/UX design, and machine learning projects, he combines creativity and technology to deliver impactful solutions.</p>
+          </div>
+        </div>
+
+        <div class="spacer" style="height:40px"></div>
+
+<div class="bottom-floating-nav">
+  <div class="nav-pill fixed-nav">
+    <div class="thumb">
+      <img src="/images/profile.png" alt="thumb">
+    </div>
+
+    <nav class="nav-links hide-mobile" id="desktopNav">
+      <a href="#home" class="active">Home</a>
+      <a href="#projects">Services</a>
+      <a href="#about">About</a>
+      <a href="#journal">Work</a>
+    </nav>
+
+    <a href="#contact" class="cta">
+      Contact <span aria-hidden="true">+</span>
+    </a>
+  </div>
+</div>
+      </div>
+    </section>
+
+    <section id="projects" class="section" style="background:#fff;color:#fff;padding-top:0;padding-bottom:6px;margin-top:-24px;">
+      <div class="container grid-2">
+        <div class="glass project-card red">
+          <img class="bgimg" src="/images/christopher-gower-m_HRfLhgABo-unsplash.jpg" alt="Beyond Time">
+          <div class="overlay"></div>
+          <div class="center-box">
+            <div class="card-panel">
+              <p class="card-label">WEB</p>
+              <h2 class="card-title">DEVELOPMENT</h2>
+              <!--<button class="cta" style="margin-top:32px;background:rgba(0,0,0,.25);color:#fff;border:none;cursor:pointer">Explore More <span aria-hidden="true">+</span></button>-->
+            </div>
+          </div>
+        </div>
+
+        <div class="glass project-card green">
+          <img class="bgimg" src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80" alt="Brand Redefine">
+          <div class="overlay"></div>
+          <div class="center-box">
+            <div class="card-panel">
+              <p class="card-label">SHOPIFY</p>
+              <h2 class="card-title">SOLUTIONS</h2>
+              <!--<button class="cta" style="margin-top:32px;background:rgba(0,0,0,.25);color:#fff;border:none;cursor:pointer">Discover <span aria-hidden="true">+</span></button>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background:#fff;color:#fff;padding-top:4px;padding-bottom:12px;">
+      <div class="container grid-2">
+        <div class="glass project-card small deep">
+          <img class="bgimg" src="/images/possessed-photography-JjGXjESMxOY-unsplash.jpg" alt="Every Second">
+          <div class="overlay"></div>
+          <div class="center-box">
+            <div class="card-panel">
+              <p class="card-label">MACHINE</p>
+              <h2 class="card-title">LEARNING</h2>
+              <!--<button class="cta" style="margin-top:32px;background:rgba(255,255,255,.10);color:#fff;border:none;cursor:pointer">Explore More <span aria-hidden="true">+</span></button>-->
+            </div>
+          </div>
+        </div>
+
+        <div class="glass project-card small black">
+          <img class="bgimg" src="/images/carl-raw-m3hn2Kn5Bns-unsplash.jpg" alt="Timeless Mastery" style="opacity:.70">
+          <div class="overlay" style="background:radial-gradient(circle at 50% 30%,rgba(255,178,93,.22),transparent 35%),linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.6))"></div>
+          <div class="center-box">
+            <div class="card-panel">
+              <p class="card-label">GAME</p>
+              <h2 class="card-title">PROGRAMMING</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section section-dark">
+      <div class="container" style="display:grid;gap:24px;">
+        <div class="about-card glass">
+          <img src="/images/aboutpic.png" alt="About">
+          <div class="about-inner">
+            <div class="about-panel">
+              <div class="about-grid">
+                <div>
+                  <p class="pixel" style="font-size:10px;letter-spacing:.2em;margin:0;color:rgba(255,255,255,.95)">ABOUT US.25</p>
+                  <h2 class="section-title big" style="margin-top:24px">ABOUT</h2>
+                </div>
+                <p class="copy light" style="max-width:360px;justify-self:end">I am Ebadullah Asif, a Computer Engineering student passionate about Web Development, Shopify, Machine Learning, and Game Programming.
+I enjoy creating modern and user-friendly digital experiences with clean and creative designs.
+I have worked on projects like GeoAgric, a machine learning-based agricultural suitability platform.
+I also develop custom websites and Shopify stores for businesses and brands.
+I am a fast-learning and motivated individual who loves building innovative digital solutions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+<!--
+        <div id="clients" class="glass" style="min-height:620px;background:#151515;padding:32px;">
+          <div class="clients-grid">
+            <div>
+              <h2 class="section-title">CLIENTS</h2>
+            </div>
+            <div class="copy" style="max-width:460px;justify-self:end">At Magnetto, we collaborate with forward-thinking brands, startups, and industry leaders who dare to challenge the norm.</div>
+          </div>
+          <div class="client-logos">
+            <div class="logo-box">Wave Studios</div>
+            <div class="logo-box">Meridian.</div>
+            <div class="logo-box">arch.</div>
+            <div class="logo-box">Oakley</div>
+            <div class="logo-box">Nova</div>
+            <div class="logo-box">Axis</div>
+          </div>
+        </div>
+      -->
+
+        <section id="journal" class="section">
+      <div class="container journal-shell">
+        <div style="display:flex;gap:24px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;">
+          <h2 class="section-title" style="font-size:clamp(2.4rem,5vw,4.8rem); margin-top:40px;">MY WORK</h2>
+          <p class="copy" style="max-width:390px;color:rgba(255,255,255,.65)">Our journal is where design meets thought leadership. From industry trends to creative breakthroughs, we share insights that inspire, challenge, and push the boundaries of design.</p>
+        </div>
+
+        <div class="journal-grid" style="margin-top:40px;">
+          <a href="https://ebad618.github.io/GeoArgic/" target="_blank" class="journal-link">
+          <article class="journal-card">
+            <div class="journal-img"><img src="/images/GeoAgric.png"></div>
+            <div class="journal-body"><h3 class="journal-title">GeoAgric</h3><div class="journal-tag">AI DESIGN</div></div>
+          </article>
+          </a>
+          <article class="journal-card">
+            <div class="journal-img"><img src="/images/movieRecom.png" alt="Glassmorphism article"></div>
+            <div class="journal-body"><h3 class="journal-title">Movie Recommendation System</h3><div class="journal-tag">DESIGN SYSTEMS</div></div>
+          </article>
+          <article class="journal-card">
+            <div class="journal-img"><img src="/images/gamePic.png" alt="Trends article"></div>
+            <div class="journal-body"><h3 class="journal-title">Game Programming</h3><div class="journal-tag">TRENDS</div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+        <div id="services" class="services-grid">
+          <div class="glass service-card">
+            <h2 class="section-title" style="font-size:clamp(2rem,4vw,3.8rem)"></h2>
+            <div class="service-art">
+              <div class="layer1"></div>
+              <div class="layer2"><img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=80" alt="Service"></div>
+              <div class="chip">Web Dev</div>
+            </div>
+            <p class="copy" style="max-width:430px">I provide modern Web Development, Shopify Store Development, Machine Learning Solutions, and UI/UX Design services. My focus is creating fast, responsive, and visually engaging digital experiences for brands and businesses.</p>
+          </div>
+
+          <div class="glass service-card">
+            <h2 class="section-title" style="font-size:clamp(2rem,4vw,3.8rem)">MILESTONES</h2>
+            <div style="width:100%;max-width:420px;padding:40px 0;">
+              <div>
+                <h3 class="milestone">3<span style="color:rgba(255,255,255,.35)">+</span></h3>
+                <p style="margin:16px 0 0;color:rgba(255,255,255,.55)">Years Experience</p>
+              </div>
+              <div class="divider"></div>
+              <div>
+                <h3 class="milestone">24<span style="color:rgba(255,255,255,.35)">+</span></h3>
+                <p style="margin:16px 0 0;color:rgba(255,255,255,.55)">Projects Completed</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+          <section id="journal" class="section"style="background:#121212;color:#fff;">
+      <div class="container journal-shell">
+        <div style="display:flex;gap:24px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;">
+          <h2 class="section-title" style="font-size:clamp(2.4rem,5vw,4.8rem)">Professional Experience</h2>
+        
+        </div>
+
+        <div class="journal-grid" style="margin-top:40px;">
+          <a href="https://affiliogytech.com" target="_blank" class="journal-link">
+          <article class="journal-card">
+            <div class="journal-img"><img src="/images/affiweb.png" alt="AI article"></div>
+            <div class="journal-body"><h3 class="journal-title">Affiliogy Tech</h3><div class="journal-tag">AI DESIGN</div></div>
+          </article>
+        </a>
+        <a href="https://buy11.store" target="_blank" class="journal-link">
+          <article class="journal-card">
+            <div class="journal-img"><img src="/images/buy11.png" alt="Glassmorphism article"></div>
+            <div class="journal-body"><h3 class="journal-title">Buy11</h3><div class="journal-tag">DESIGN SYSTEMS</div></div>
+          </article>
+        </a>
+        <a href="https://couponshatchbyebad.netlify.app/" target="_blank" class="journal-link">
+          <article class="journal-card">
+            <div class="journal-img"><img src="/images/Coupon.png" alt="Trends article"></div>
+            <div class="journal-body"><h3 class="journal-title">Coupon Thunder</h3><div class="journal-tag">TRENDS</div></div>
+          </article>
+        </a>
+        </div>
+      </div>
+    </section>
+
+
+<section id="contact" class="section" style="background:#000;color:#fff;">
+  <div class="container contact-card glass">
+    
+    <img src="https://images.unsplash.com/photo-1514306191717-452ec28c7814?auto=format&fit=crop&w=1400&q=80" alt="Contact background">
+
+    <div class="contact-inner">
+
+      <div>
+        <h2 class="section-title big">GET IN TOUCH</h2>
+
+        <p class="copy light" style="max-width:560px;font-size:18px;margin-top:24px">
+          Have a project in mind? Whether you are launching a brand, designing a product, or elevating your digital presence, we are here to bring your vision to life.
+        </p>
+      </div>
+
+      <!-- FORM -->
+      <form class="form" id="whatsappForm">
+
+        <div class="form-head">
+          <div class="pixel" style="font-size:10px;color:rgba(255,255,255,.9)">
+          CONTACT US ON WHATSAPP
+          </div>
+
+          <div id="activeSection" style="color:rgba(255,255,255,.6);font-size:14px">
+            Contact
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;">
+
+          <label class="label">
+            <span>First name</span>
+            <input class="input" id="firstName" placeholder="Name">
+          </label>
+
+          <label class="label">
+            <span>Last name</span>
+            <input class="input" id="lastName" placeholder="Surname">
+          </label>
+
+          <label class="label">
+            <span>Email</span>
+            <input class="input" id="email" placeholder="example@gmail.com">
+          </label>
+
+          <label class="label">
+            <span>Phone no.</span>
+            <input class="input" id="phone" placeholder="+(000) 000 000 0000">
+          </label>
+
+        </div>
+
+        <button type="submit" class="submit">
+          SUBMIT
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+</section>
+
+    <footer class="footer section" style="background:#000;color:#fff;padding:60px 0 80px">
+      <div class="container footer-box">
+        <div class="footer-grid">
+          <div>
+            <div class="pixel" style="font-size:10px;color:rgba(255,255,255,.85)">STAY CONNECTED.</div>
+            <a href="mailto:asifebad@gmail.com" class="footer-title">asifebad@gmail.com</a>
+            <p class="copy" style="margin-top:20px;max-width:470px;color:rgba(255,255,255,.70)">I create modern digital experiences through Web Development, Shopify Solutions, and Machine Learning projects. Passionate about creativity and technology, I focus on building responsive, user-friendly, and impactful solutions that help brands and ideas grow online.</p>
+            <p style="margin-top:32px;font-weight:600;color:rgba(255,255,255,.85)">Made with Love by Ebbi</p>
+          </div>
+          <div>
+            <div class="pixel" style="font-size:10px;color:rgba(255,255,255,.85);margin-bottom:20px">Links</div>
+            <div class="footer-links">
+              <a href="#home">Home</a>
+              <a href="#projects">Services</a>
+              <a href="#about">About</a>
+              <a href="#journal">My Work</a>
+              <a href="#contact">Contact us</a>
+            </div>
+          </div>
+          <div>
+            <div class="pixel" style="font-size:10px;color:rgba(255,255,255,.85);margin-bottom:20px">Social Media</div>
+<div class="socials">
+  <a href="https://www.instagram.com/ebad_asif" target="_blank" class="soc">
+    <i class="fa-brands fa-instagram"></i>
+  </a>
+
+  <a href="https://www.linkedin.com/in/ebadullah-asif-2138a1196/" target="_blank" class="soc">
+    <i class="fa-brands fa-linkedin-in"></i>
+  </a>
+
+  <a href="https://www.facebook.com/Ebad.Asif.73" target="_blank" class="soc">
+    <i class="fa-brands fa-facebook-f"></i>
+  </a>
+<a href="https://github.com/ebad618" target="_blank" class="soc">
+    <i class="fa-brands fa-github"></i>
+  </a>
+</div>
+          </div>
+        </div>
+        <div class="footer-brand">EBADULLAH ASIF</div>
+        <div class="copyright">©2026 EBBI. All right reserved.</div>
+      </div>
+    </footer>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="menu-panel">
+      <div class="menu-head">
+        <div class="menu-title">Menu</div>
+        <button class="menu-btn dark" id="closeMenu" aria-label="Close menu">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg>
+        </button>
+      </div>
+      <div class="menu-list">
+        <a class="menu-link" href="#home">Home</a>
+        <a class="menu-link" href="#projects">Services</a>
+        <a class="menu-link" href="#about">About</a>
+        <a class="menu-link" href="#journal">Journal</a>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const closeMenu = document.getElementById('closeMenu');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  function openMenu(){
+    mobileMenu.classList.add('open');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenuFn(){
+    mobileMenu.classList.remove('open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.contains('open') ? closeMenuFn() : openMenu();
+  });
+
+  closeMenu.addEventListener('click', closeMenuFn);
+
+  mobileMenu.addEventListener('click', (e) => {
+    if (e.target === mobileMenu) closeMenuFn();
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', closeMenuFn);
+  });
+</script>
+  <script>
+const floatingNav = document.querySelector('.bottom-floating-nav');
+const footer = document.querySelector('footer');
+
+const footerObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      floatingNav.classList.add('hide-nav');
+    } else {
+      floatingNav.classList.remove('hide-nav');
+    }
+  });
+}, {
+  threshold: 0.1
+});
+
+footerObserver.observe(footer);
+  </script>
+  <script>
+document.getElementById("whatsappForm").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    let firstName = document.getElementById("firstName").value;
+    let lastName = document.getElementById("lastName").value;
+    let email = document.getElementById("email").value;
+    let phone = document.getElementById("phone").value;
+
+    let message =
+`New Portfolio Contact
+
+Name: ${firstName} ${lastName}
+Email: ${email}
+Phone: ${phone}`;
+
+    let whatsappURL =
+`https://wa.me/923128777628?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappURL, "_blank");
+
+});
+</script>
+</body>
+</html>
